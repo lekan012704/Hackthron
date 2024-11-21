@@ -17,27 +17,27 @@
         <button onclick="window.location.href='dashboard.html';">Back to Dashboard</button>
     </div>
     <script>
-        
-        const userData = JSON.parse(localStorage.getItem("userData"));
+       // Load user data from localStorage
+       const userData = JSON.parse(localStorage.getItem("userData"));
 
-        if (userData) {
-            
-            document.getElementById("balance").innerText = `${userData.balance} Points`;
-            document.getElementById("badge").innerText = userData.badge;
+if (userData) {
+    // Display user's balance and badge
+    document.getElementById("balance").innerText = `${userData.balance} Points`;
+    document.getElementById("badge").innerText = userData.badge;
 
-            
-            const activitiesList = document.getElementById("activities");
-            if (userData.activities && userData.activities.length > 0) {
-                activitiesList.innerHTML = userData.activities
-                    .map(activity => `<li>${activity}</li>`)
-                    .join("");
-            } else {
-                activitiesList.innerHTML = "<li>No activities yet.</li>";
-            }
-        } else {
-            alert("No user data found. Please log in first.");
-            window.location.href = "index.html"; 
-        }
+    // Display activities
+    const activitiesList = document.getElementById("activities");
+    if (userData.activities && userData.activities.length > 0) {
+        activitiesList.innerHTML = userData.activities
+            .map(activity => `<li>${activity}</li>`)
+            .join("");
+    } else {
+        activitiesList.innerHTML = "<li>No activities yet.</li>";
+    }
+} else {
+    alert("No user data found. Please log in first.");
+    window.location.href = "index.html"; // Redirect to the login page
+}
     </script>
 </body>
 </html>
